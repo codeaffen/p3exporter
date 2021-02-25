@@ -16,6 +16,7 @@ setup(
     author_email='cme@codeaffen.org',
     license='GPLv3',
     classifiers=[
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'Topic :: System :: Monitoring',
