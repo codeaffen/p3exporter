@@ -14,15 +14,18 @@ from p3exporter.web import create_app
 
 
 def shutdown():
+    """Function to shutdown the app in a clean way."""
     logging.info('Shutting down, see you next time!')
     sys.exit(1)
 
 
 def signal_handler():
+    """Function called if a signal was catched"""
     shutdown()
 
 
 def main():
+    """Main method to start the application"""
     signal.signal(signal.SIGTERM, signal_handler)
 
     logging.getLogger().setLevel(logging.INFO)
