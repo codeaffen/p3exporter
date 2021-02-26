@@ -55,8 +55,9 @@ doc:
 	sphinx-apidoc -M -f -o docs/plugins/ p3exporter
 	make -C docs html
 
-test-setup: | tests/vars/server.yml
+test-setup:
 	pip install --upgrade -r requirements-dev.txt
+	python setup.py install
 
 test-all:
 	coverage run -m pytest tests/test_cases/* -v
