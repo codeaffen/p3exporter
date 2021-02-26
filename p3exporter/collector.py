@@ -26,7 +26,7 @@ class CollectorConfig(object):
 
 
 class MyCollector(object):
-    """As sample collector.
+    """A sample collector.
 
     It does not really do much. It only runs a method and return the time it runs as a gauge metric.
     """
@@ -34,10 +34,12 @@ class MyCollector(object):
         pass
 
     def collect(self):
+        """Function that collects the metrics"""
         timer = time.perf_counter()
         self._run_process()
         timer = time.perf_counter() - timer
         yield GaugeMetricFamily('my_process_runtime', 'Time a process runs in seconds', value=timer)
 
     def _run_process(self):
+        """Sample fuction to ran a command for metrics"""
         time.sleep(random.random())

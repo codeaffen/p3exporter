@@ -7,6 +7,15 @@ from p3exporter import CollectorConfig
 
 
 def create_app(config: CollectorConfig):
+    """Creates the web app.
+
+    This Function creates the flask app and dispatch metrics endpoint to prometheus wsgi app.
+
+    :param config: A configuration object with data for template rendering.
+    :type config: CollectorConfig
+    :return: Created web app object.
+    :rtype: DispatcherMiddleware
+    """
 
     app = Flask(__name__, instance_relative_config=True)
 

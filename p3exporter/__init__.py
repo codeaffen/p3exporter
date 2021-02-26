@@ -1,3 +1,4 @@
+"""Init methods for p3exporter package"""
 import argparse
 from wsgiref.simple_server import make_server
 
