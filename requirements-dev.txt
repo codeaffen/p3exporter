@@ -1,0 +1,14 @@
+wheel
+changelog-cli
+flake8
+flake8-colors
+flake8-docstrings
+twine
+setuptools
+PyYAML
+bumpversion
+pytest
+pytest-replay
+pytest-vcr
+pytest-xdist
+coverage

@@ -2,13 +2,13 @@
 
 This repo should help any DevOps to quickstart its Prometheus exporter development base on Python. It is a POC which shows how different packages and libraries can be put together to create your own exporter for Prometheus.
 
-The project is based on Flask as web framework and Prometheus [python-client](python-client). We also provide a simple Dockerfile to enable you to build a Docker container image for your exporter as well as let it run as a simple program.
+The project is based on Flask as web framework and Prometheus [python-client](https://github.com/prometheus/client_python). We also provide a simple Dockerfile to enable you to build a Docker container image for your exporter as well as let it run as a simple program.
 
 ## install and run locally
 
 To install the `p3exporter` package you simply run the following command inside the project directory:
 
-```
+```text
 $ pip install -e .
 Obtaining file:///home/nero/Development/p3exporter
 ...
@@ -19,7 +19,7 @@ Successfully installed p3exporter
 
 From now you can run it with:
 
-```
+```text
 $ p3exporter
 INFO:root:Start exporter, listen on 5876
 ```
