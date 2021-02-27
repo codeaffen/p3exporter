@@ -3,10 +3,12 @@ changelog-cli
 flake8
 flake8-colors
 flake8-docstrings
+flask
 twine
 setuptools
 PyYAML
 bumpversion
+prometheus-client
 pytest
 pytest-replay
 pytest-vcr
