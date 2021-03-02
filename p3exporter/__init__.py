@@ -20,7 +20,7 @@ def shutdown():
     sys.exit(1)
 
 
-def signal_handler():
+def signal_handler(signum, frame):
     """Function called if a signal was catched"""
     shutdown()
 
@@ -28,6 +28,7 @@ def signal_handler():
 def main():
     """Main method to start the application"""
     signal.signal(signal.SIGTERM, signal_handler)
+    signal.signal(signal.SIGINT, signal_handler)
 
     logging.getLogger().setLevel(logging.INFO)
 
@@ -51,8 +52,5 @@ def main():
     httpd = make_server('', int(args.port), app)
     httpd.serve_forever()
 
-    try:
-        while True:
-            time.sleep(5)
-    except KeyboardInterrupt:
-        signal_handler()
+    while True:
+        time.sleep(5)
