@@ -10,5 +10,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
+* signal handling print now clean log messages instead of exceptions
 
 ### Breaks
