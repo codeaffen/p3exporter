@@ -30,13 +30,13 @@ Do determine the available command line options you can call the online help:
 
 ```text
 $ p3exporter --help
-usage: p3exporter [-h] [-c CONFIG_FILE] [-p PORT]
+usage: p3exporter [-h] [-c CONFIG] [-p PORT]
 
 Python programmable Prometheus exporter.
 
 optional arguments:
   -h, --help            show this help message and exit
-  -c CONFIG_FILE, --config-file CONFIG_FILE
+  -c CONFIG, --config CONFIG
                         path to configuration file.
   -p PORT, --port PORT  exporter exposed port
 ```
