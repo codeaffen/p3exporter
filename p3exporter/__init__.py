@@ -33,7 +33,7 @@ def main():
     logging.getLogger().setLevel(logging.INFO)
 
     parser = argparse.ArgumentParser(description="Python programmable Prometheus exporter.")
-    parser.add_argument('-c', '--config-file', default='p3.yml',
+    parser.add_argument('-c', '--config', default='p3.yml',
                         help='path to configuration file.')
     parser.add_argument('-p', '--port', default=5876,
                         help='exporter exposed port')
