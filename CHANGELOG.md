@@ -9,7 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Changes
 
+* move collector to sub module
+
 ### Fixes
+
 * signal handling print now clean log messages instead of exceptions
 
 ### Breaks

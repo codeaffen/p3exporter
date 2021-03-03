@@ -6,16 +6,16 @@ p3exporter package
    :undoc-members:
    :show-inheritance:
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   p3exporter.collector
+
 Submodules
 ----------
-
-p3exporter.collector module
----------------------------
-
-.. automodule:: p3exporter.collector
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 p3exporter.web module
 ---------------------
