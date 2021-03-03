@@ -7,11 +7,11 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='p3exporter',
-    version='0.0.2',
+    version='0.1.0',
     description='Python Programmable Prometheus exporter',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/codeaffen/p3exporter',
+    url='https://codeaffen.org/projects/p3exporter',
     author='Christian Meißner',
     author_email='cme@codeaffen.org',
     license='GPLv3',
