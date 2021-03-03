@@ -39,7 +39,7 @@ def main():
                         help='exporter exposed port')
     args = parser.parse_args()
 
-    with open(args.config_file, 'r') as config_file:
+    with open(args.config, 'r') as config_file:
         cfg = yaml.load(config_file, Loader=yaml.FullLoader)
     collector_config = CollectorConfig(**cfg)
 
