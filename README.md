@@ -64,4 +64,4 @@ $ docker run -d -p 5876:5876 --name p3e codeaffen/p3exporter
 
 If your exporter run either as local program or as docker container you can access it with your webbrowser.
 
-![metrics in browser](static/images/metrics.png)
+![metrics in browser](https://github.com/codeaffen/p3exporter/raw/develop/static/images/metrics.png)

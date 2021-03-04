@@ -1,3 +1,4 @@
+"""Web module provide all parts to create the web app."""
 from flask import Flask, render_template
 
 from prometheus_client import make_wsgi_app
@@ -7,7 +8,7 @@ from p3exporter import CollectorConfig
 
 
 def create_app(config: CollectorConfig):
-    """Creates the web app.
+    """Create the web app.
 
     This Function creates the flask app and dispatch metrics endpoint to prometheus wsgi app.
 
@@ -16,7 +17,6 @@ def create_app(config: CollectorConfig):
     :return: Created web app object.
     :rtype: DispatcherMiddleware
     """
-
     app = Flask(__name__, instance_relative_config=True)
 
     @app.route("/")

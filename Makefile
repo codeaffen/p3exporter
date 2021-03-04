@@ -16,9 +16,9 @@ default: help
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of:"
-		@echo "  help  			  - to show this message"
-		@echo "  lint  			  - to run code linting"
-		@echo "  clean 			  - clean workspace"
+		@echo "  help         - to show this message"
+		@echo "  lint         - to run code linting"
+		@echo "  clean        - clean workspace"
 		@echo "  doc-setup    - prepare environment for creating documentation"
 		@echo "  doc          - create documentation"
 		@echo "  test-setup   - prepare environment for tests"
