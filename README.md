@@ -1,5 +1,9 @@
 # Python programmable Prometheus exporter
 
+[![PyPI version](https://badge.fury.io/py/p3exporter.svg)](https://badge.fury.io/py/p3exporter)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0c608f1a8a18412ba2031853b8963be7)](https://www.codacy.com/gh/codeaffen/p3exporter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codeaffen/p3exporter&amp;utm_campaign=Badge_Grade)
+[![Documentation Status](https://readthedocs.org/projects/p3exporter/badge/?version=develop)](https://p3exporter.readthedocs.io/en/latest/?badge=latest)
+
 This repo should help any DevOps to quickstart its Prometheus exporter development base on Python. It is a POC which shows how different packages and libraries can be put together to create your own exporter for Prometheus.
 
 The project is based on Flask as web framework and Prometheus [python-client](https://github.com/prometheus/client_python). We also provide a simple Dockerfile to enable you to build a Docker container image for your exporter as well as let it run as a simple program.

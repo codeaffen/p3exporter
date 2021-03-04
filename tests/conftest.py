@@ -1,7 +1,6 @@
 """Provide some base configurations for tests."""
 import pytest
 import py.path
-import yaml
 
 from urllib.parse import urlparse, urlunparse
 

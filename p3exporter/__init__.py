@@ -40,7 +40,7 @@ def main():
     args = parser.parse_args()
 
     with open(args.config, 'r') as config_file:
-        cfg = yaml.load(config_file, Loader=yaml.FullLoader)
+        cfg = yaml.load(config_file, Loader=yaml.SafeLoader)
     collector_config = CollectorConfig(**cfg)
 
     collector = MyCollector(collector_config)
