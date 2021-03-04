@@ -1,3 +1,4 @@
+"""Entry point for collector sub module."""
 import random
 import time
 
@@ -6,6 +7,7 @@ from prometheus_client.core import GaugeMetricFamily
 
 class CollectorConfig(object):
     """Class that provide all the logic needed for configuration handling."""
+
     def __init__(self, **kwargs):
         """Initialize instance variables.
 
@@ -30,16 +32,18 @@ class MyCollector(object):
 
     It does not really do much. It only runs a method and return the time it runs as a gauge metric.
     """
+
     def __init__(self, config: CollectorConfig):
+        """Instanciate a MyCollector object."""
         pass
 
     def collect(self):
-        """Function that collects the metrics"""
+        """Collect the metrics."""
         timer = time.perf_counter()
         self._run_process()
         timer = time.perf_counter() - timer
         yield GaugeMetricFamily('my_process_runtime', 'Time a process runs in seconds', value=timer)
 
     def _run_process(self):
-        """Sample fuction to ran a command for metrics"""
+        """Sample function to ran a command for metrics."""
         time.sleep(random.random())
