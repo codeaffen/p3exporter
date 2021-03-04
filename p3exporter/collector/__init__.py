@@ -39,11 +39,11 @@ class MyCollector(object):
 
     def collect(self):
         """Collect the metrics."""
-        timer = time.perf_counter()
-        self._run_process()
-        timer = time.perf_counter() - timer
-        yield GaugeMetricFamily('my_process_runtime', 'Time a process runs in seconds', value=timer)
+        self.timer = time.perf_counter()
+        _run_process()
+        runtime = time.perf_counter() - self.timer
+        yield GaugeMetricFamily('my_process_runtime', 'Time a process runs in seconds', value=runtime)
 
-    def _run_process(self):
-        """Sample function to ran a command for metrics."""
-        time.sleep(random.random())
+def _run_process():
+    """Sample function to ran a command for metrics."""
+    time.sleep(random.random()) # nosec
