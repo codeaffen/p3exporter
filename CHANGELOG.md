@@ -13,6 +13,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Breaks
 
+## 1.0.0 - (2021-03-22)
+
+### New
+
+* now it is simplier to add new collectors. You have to simply follow the naming convention
+* add loadavg collector as a real life example
+
+### Breaks
+
+* change load and registration behavior for collectors
+
 ## 0.1.0 - (2021-03-04)
 
 ### Changes

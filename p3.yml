@@ -1,2 +1,5 @@
 exporter_name: "Python prammable Prometheus exporter"
+collectors:
+  - loadavg
+  - my
 credentials:
