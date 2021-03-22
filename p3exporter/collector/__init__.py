@@ -34,8 +34,8 @@ class Collector(object):
 
     All collectors have to be placed inside the directory `collector`. You have to follow the naming convention:
 
-    1. Place the collector code in a \<name\>.py file (e.g. `my.py`)
-    2. Within the file \<name\>.py` a class \<Name>\>Collector (e.g. `MyController`) needs to be defined.
+    1. Place the collector code in a <name>.py file (e.g. `my.py`)
+    2. Within the file <name>.py` a class <Name>Collector (e.g. `MyController`) needs to be defined.
        This is the main collector class which will be imported, instantiate and registered automatically.
     """
 
