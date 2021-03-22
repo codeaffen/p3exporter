@@ -1,5 +1,6 @@
 """Entry point for collector sub module."""
 import inflection
+import logging
 
 from importlib import import_module
 from prometheus_client.core import REGISTRY
@@ -45,7 +46,8 @@ class Collector(object):
                 collector_class = getattr(collector_module, "{0}Collector".format(inflection.camelize(c)))
                 collector = collector_class(config)
                 REGISTRY.register(collector)
+                logging.info("Collector '{0}' was loaded and registred sucessfully".format(c))
             except ModuleNotFoundError as e:
-                print("Collector '{0}' not loaded: {1}".format(c, e.msg))
+                logging.warning("Collector '{0}' not loaded: {1}".format(c, e.msg))
             except AttributeError as e:
-                print("Collector '{0}' not loaded: {1}".format(c, e))
+                logging.warning("Collector '{0}' not loaded: {1}".format(c, e))
