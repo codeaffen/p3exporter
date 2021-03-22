@@ -8,9 +8,7 @@ import signal
 import sys
 import time
 
-from prometheus_client.core import REGISTRY
-
-from p3exporter.collector import MyCollector, CollectorConfig
+from p3exporter.collector import Collector, CollectorConfig
 from p3exporter.web import create_app
 
 
@@ -43,8 +41,7 @@ def main():
         cfg = yaml.load(config_file, Loader=yaml.SafeLoader)
     collector_config = CollectorConfig(**cfg)
 
-    collector = MyCollector(collector_config)
-    REGISTRY.register(collector)
+    Collector(collector_config)
 
     app = create_app(collector_config)
 

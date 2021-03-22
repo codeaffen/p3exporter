@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='p3exporter',
-    version='0.1.0',
+    version='1.0.0',
     description='Python Programmable Prometheus exporter',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -31,6 +31,7 @@ setup(
     zip_safe=False,
     package_data={'p3exporter': ['static/*', 'templates/*']},
     install_requires=[
+        'inflection',
         'prometheus-client',
         'PyYAML',
         'flask',

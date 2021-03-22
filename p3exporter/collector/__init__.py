@@ -1,8 +1,9 @@
 """Entry point for collector sub module."""
-import random
-import time
+import inflection
+import logging
 
-from prometheus_client.core import GaugeMetricFamily
+from importlib import import_module
+from prometheus_client.core import REGISTRY
 
 
 class CollectorConfig(object):
@@ -16,6 +17,7 @@ class CollectorConfig(object):
         :raises Exception: Raises an exception if credentials are not well configured.
         """
         self.exporter_name = kwargs.pop('exporter_name', None)
+        self.collectors = kwargs.pop('collectors', [])
         self.credentials = kwargs.pop('credentials', None)
 
         # do some fancy checks on configuration parameters
@@ -27,23 +29,25 @@ class CollectorConfig(object):
             raise Exception('Credential is not fully configured.')
 
 
-class MyCollector(object):
-    """A sample collector.
+class Collector(object):
+    """Base class to load collectors.
 
-    It does not really do much. It only runs a method and return the time it runs as a gauge metric.
+    All collectors have to be placed inside the directory `collector`. You have to follow the naming convention:
+
+    1. Place the collector code in a <name>.py file (e.g. `my.py`)
+    2. Within the file <name>.py` a class <Name>Collector (e.g. `MyController`) needs to be defined.
+       This is the main collector class which will be imported, instantiate and registered automatically.
     """
 
     def __init__(self, config: CollectorConfig):
-        """Instanciate a MyCollector object."""
-        pass
-
-    def collect(self):
-        """Collect the metrics."""
-        self.timer = time.perf_counter()
-        _run_process()
-        runtime = time.perf_counter() - self.timer
-        yield GaugeMetricFamily('my_process_runtime', 'Time a process runs in seconds', value=runtime)
-
-def _run_process():
-    """Sample function to ran a command for metrics."""
-    time.sleep(random.random()) # nosec
+        for c in config.collectors:
+            try:
+                collector_module = import_module("p3exporter.collector.{}".format(c), package=None)
+                collector_class = getattr(collector_module, "{0}Collector".format(inflection.camelize(c)))
+                collector = collector_class(config)
+                REGISTRY.register(collector)
+                logging.info("Collector '{0}' was loaded and registred sucessfully".format(c))
+            except ModuleNotFoundError as e:
+                logging.warning("Collector '{0}' not loaded: {1}".format(c, e.msg))
+            except AttributeError as e:
+                logging.warning("Collector '{0}' not loaded: {1}".format(c, e))
