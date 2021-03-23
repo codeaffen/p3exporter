@@ -4,68 +4,104 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0c608f1a8a18412ba2031853b8963be7)](https://www.codacy.com/gh/codeaffen/p3exporter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codeaffen/p3exporter&amp;utm_campaign=Badge_Grade)
 [![Documentation Status](https://readthedocs.org/projects/p3exporter/badge/?version=develop)](https://p3exporter.readthedocs.io/en/latest/?badge=latest)
 
-This repo should help any DevOps to quickstart its Prometheus exporter development base on Python. It is a POC which shows how different packages and libraries can be put together to create your own exporter for Prometheus.
+p3exporter will help any DevOps to quickstart its Prometheus exporter development. It is completly written in python and provide a pluggable metric collectors.
+The exporter comes with real life exporters to illustrate how it works but is also intended to use it as a framework for completely custom collectors.
+Activation and deactivation is done simply by editing the `p3.yml`.
 
-The project is based on Flask as web framework and Prometheus [python-client](https://github.com/prometheus/client_python). We also provide a simple Dockerfile to enable you to build a Docker container image for your exporter as well as let it run as a simple program.
+The included collectors were only tested on linux systems. Other \*nix derivates are not supported by us but you are welcome to contribute to bring this exporter to a broader audience.
 
-## install and run locally
+## Installation and Running
 
-To install the `p3exporter` package you simply run the following command inside the project directory:
+There are different ways to run the exporter on your system. Our exporter listen on tcp/5876 by default. You can change this by adding `--port` or `-p` option with the port of your choice.
+
+### Running exporter as docker container
+
+The simplest way will is to start it as docker container.
+The container image is hosted on [dockerhub](https://hub.docker.com/r/codeaffen/p3exporter) and the latest tag represent the `develop` branch of the github repository.
+If you want to use a given version you can us the verson string (e.g. `v1.0.0`) as tag instead.
 
 ```text
+docker run -d --net="host" --pid="host" -v "/:/host:ro,rslave" codeaffen/p3exporter:latest
+```
+
+### Installing from pypi.org
+
+We also release all versions on [pypi](https://pypi.org/project/p3exporter/) so you can use `pip` to install the exporter and run it locally.
+
+```text
+pip install p3exporter
+```
+
+This will install the exporter and all of its dependencies. Now you can start it as every other program. You need to add `--config` or `-c` option with path to your `p3.yml` file.
+
+```text
+$ curl --silent https://raw.githubusercontent.com/codeaffen/p3exporter/develop/p3.yml --output ~/tmp/p3.yml
+$ p3exporter --config ~/tmp/p3.yml
+INFO:root:Collector 'loadavg' was loaded and registred sucessfully
+INFO:root:Collector 'my' was loaded and registred sucessfully
+INFO:root:Start exporter, listen on 5876
+```
+
+### Install from repository
+
+The last option to install and run p3exporter is to install it from a local clone of our [github repository](https://github.com/codeaffen/p3exporter).
+
+```text
+$ git clone https://github.com/codeaffen/p3exporter.git
+Cloning into 'p3exporter'...
+remote: Enumerating objects: 158, done.
+remote: Counting objects: 100% (158/158), done.
+remote: Compressing objects: 100% (112/112), done.
+remote: Total 158 (delta 63), reused 101 (delta 28), pack-reused 0
+Receiving objects: 100% (158/158), 188.37 KiB | 1.08 MiB/s, done.
+Resolving deltas: 100% (63/63), done.
+$ cd p3exporter
 $ pip install -e .
-Obtaining file:///home/nero/Development/p3exporter
-...
-Installing collected packages: p3exporter
-  Running setup.py develop for p3exporter
-Successfully installed p3exporter
 ```
 
 From now you can run it with:
 
 ```text
 $ p3exporter
+INFO:root:Collector 'loadavg' was loaded and registred sucessfully
+INFO:root:Collector 'my' was loaded and registred sucessfully
 INFO:root:Start exporter, listen on 5876
 ```
 
-### available command line options
+## Building your own container image
 
-Do determine the available command line options you can call the online help:
-
-```text
-$ p3exporter --help
-usage: p3exporter [-h] [-c CONFIG] [-p PORT]
-
-Python programmable Prometheus exporter.
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -c CONFIG, --config CONFIG
-                        path to configuration file.
-  -p PORT, --port PORT  exporter exposed port
-```
-
-## build image and run in docker
-
-To let the exporter run in docker you have to do the following:
+To build your own container image you can use the dockerfile which is delivered in our github repository.
+This file is also used to create our images on dockerhub.
 
 ```text
-$ docker build -t codeaffen/p3exporter .
+$ docker build -t p3exporter .
 Sending build context to Docker daemon  181.8kB
 ...
 Successfully built a6bdf60489f5
-Successfully tagged codeaffen/p3exporter:latest
+Successfully tagged p3exporter:latest
 ```
 
-Now you can start the container. Don't forget to expose the port to your network.
+Now you can start the container. Here you can use the command from above. You have just to use your image
 
 ```text
-$ docker run -d -p 5876:5876 --name p3e codeaffen/p3exporter
-03e287d50cce595cec6ee66d75a663a094ba7688c761303e7e1e9ad39bde695c
+docker run -d --net="host" --pid="host" -v "/:/host:ro,rslave" p3exporter:latest
 ```
 
-## access exporter
+## Collectors
 
-If your exporter run either as local program or as docker container you can access it with your webbrowser.
+Name | Description
+---- | -----------
+loadavg | collect average load in 1, 5 and 14 minutes interval
+my | example collector that actually does nothing but show how long a function has been executed
 
-![metrics in browser](https://github.com/codeaffen/p3exporter/raw/develop/static/images/metrics.png)
+### Activation and Deactivation of collectors
+
+To activate or deactive collectors you have to configure it in `p3.yml` within the `collectors` list. All collectors listed in this list will be activated a start time of p3exporter. If there are any issues e.g. collector can't be found or has failures in code a warning will be shown and it will not be activated.
+
+```yaml
+exporter_name: "Python prammable Prometheus exporter"
+collectors:
+  - loadavg
+  - my
+credentials:
+```
