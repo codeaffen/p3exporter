@@ -18,6 +18,7 @@ class CollectorConfig(object):
         """
         self.exporter_name = kwargs.pop('exporter_name', None)
         self.collectors = kwargs.pop('collectors', [])
+        self.collector_opts = kwargs.pop('collector_opts', {})
         self.credentials = kwargs.pop('credentials', None)
 
         # do some fancy checks on configuration parameters

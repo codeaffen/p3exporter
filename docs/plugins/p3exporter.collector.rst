@@ -24,3 +24,11 @@ p3exporter.collector.my module
    :members:
    :undoc-members:
    :show-inheritance:
+
+p3exporter.collector.netdev module
+----------------------------------
+
+.. automodule:: p3exporter.collector.netdev
+   :members:
+   :undoc-members:
+   :show-inheritance:
