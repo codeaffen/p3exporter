@@ -4,9 +4,8 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0c608f1a8a18412ba2031853b8963be7)](https://www.codacy.com/gh/codeaffen/p3exporter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codeaffen/p3exporter&amp;utm_campaign=Badge_Grade)
 [![Documentation Status](https://readthedocs.org/projects/p3exporter/badge/?version=develop)](https://p3exporter.readthedocs.io/en/latest/?badge=latest)
 
-p3exporter will help any DevOps to quickstart its Prometheus exporter development. It is completly written in python and provide a pluggable metric collectors.
-The exporter comes with real life exporters to illustrate how it works but is also intended to use it as a framework for completely custom collectors.
-Activation and deactivation is done simply by editing the `p3.yml`.
+p3exporter will help any DevOps to quickstart its Prometheus exporter development. It is completly written in python and provides a facility for pluggable metric collectors.
+The exporter comes with real life exporters to illustrate how it works but is also intended to use as a framework for completely custom collectors.
 
 The included collectors were only tested on linux systems. Other \*nix derivates are not supported by us but you are welcome to contribute to bring this exporter to a broader audience.
 
