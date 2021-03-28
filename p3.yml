@@ -1,5 +1,12 @@
 exporter_name: "Python prammable Prometheus exporter"
 collectors:
   - loadavg
+  - netdev
   - my
 credentials:
+collector_opts:
+  netdev:
+    whitelist:
+    blacklist:
+      - docker0
+      - lo

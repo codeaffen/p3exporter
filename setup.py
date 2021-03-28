@@ -31,10 +31,11 @@ setup(
     zip_safe=False,
     package_data={'p3exporter': ['static/*', 'templates/*']},
     install_requires=[
-        'inflection',
-        'prometheus-client',
-        'PyYAML',
         'flask',
+        'inflection',
+        'netifaces',
+        'prometheus-client',
+        'PyYAML'
     ],
     entry_points={
         'console_scripts': [
