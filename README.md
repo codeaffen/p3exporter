@@ -1,5 +1,6 @@
 # Python programmable Prometheus exporter
 
+[![Docker Image Version](https://img.shields.io/docker/v/codeaffen/p3exporter?label=dockerhub&logo=dockerhub&sort=semver)](https://hub.docker.com/r/codeaffen/p3exporter)
 [![PyPI version](https://badge.fury.io/py/p3exporter.svg)](https://badge.fury.io/py/p3exporter)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0c608f1a8a18412ba2031853b8963be7)](https://www.codacy.com/gh/codeaffen/p3exporter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codeaffen/p3exporter&amp;utm_campaign=Badge_Grade)
 [![Documentation Status](https://readthedocs.org/projects/p3exporter/badge/?version=develop)](https://p3exporter.readthedocs.io/en/latest/?badge=latest)
