@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * add netdev collector for network information and statistics
 
 ### Changes
+* * reduce docker image size
+* * we switched base image from python:3-slim to alpine
 
 ### Fixes
 
