@@ -8,7 +8,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 * introduce `CollectorBase` class to derive new collectors from
-* introduce  class to derive new collectors from
 * add netdev collector for network information and statistics
 
 ### Changes
