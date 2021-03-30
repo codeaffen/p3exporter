@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 * introduce `CollectorBase` class to derive new collectors from
+* added cache module with timed lru cache
 * add netdev collector for network information and statistics
 
 ### Changes

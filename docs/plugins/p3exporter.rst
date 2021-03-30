@@ -12,6 +12,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   p3exporter.cache
    p3exporter.collector
 
 Submodules
