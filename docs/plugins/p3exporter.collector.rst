@@ -9,18 +9,18 @@ p3exporter.collector package
 Submodules
 ----------
 
-p3exporter.collector.loadavg module
+p3exporter.collector.example module
 -----------------------------------
 
-.. automodule:: p3exporter.collector.loadavg
+.. automodule:: p3exporter.collector.example
    :members:
    :undoc-members:
    :show-inheritance:
 
-p3exporter.collector.my module
-------------------------------
+p3exporter.collector.loadavg module
+-----------------------------------
 
-.. automodule:: p3exporter.collector.my
+.. automodule:: p3exporter.collector.loadavg
    :members:
    :undoc-members:
    :show-inheritance:
