@@ -102,9 +102,9 @@ To activate or deactive collectors you have to configure it in `p3.yml` within t
 ```yaml
 exporter_name: "Python prammable Prometheus exporter"
 collectors:
+  - example
   - loadavg
   - netdev
-  - my
 credentials:
 collector_opts:
   netdev:
