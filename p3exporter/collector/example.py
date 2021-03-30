@@ -1,8 +1,6 @@
 import random
 import time
 
-from prometheus_client.metrics import Info
-
 from p3exporter.collector import CollectorBase, CollectorConfig
 from p3exporter.cache import timed_lru_cache
 from prometheus_client.core import GaugeMetricFamily, InfoMetricFamily
