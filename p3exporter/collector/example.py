@@ -1,10 +1,11 @@
 import random
 import time
 
-from p3exporter.collector import CollectorConfig
+from p3exporter.collector import CollectorBase, CollectorConfig
 from prometheus_client.core import GaugeMetricFamily
 
-class MyCollector(object):
+
+class ExampleCollector(CollectorBase):
     """A sample collector.
 
     It does not really do much. It only runs a method and return the time it runs as a gauge metric.
@@ -12,7 +13,7 @@ class MyCollector(object):
 
     def __init__(self, config: CollectorConfig):
         """Instanciate a MyCollector object."""
-        pass
+        super(ExampleCollector, self).__init__(config)
 
     def collect(self):
         """Collect the metrics."""

@@ -1,8 +1,8 @@
 exporter_name: "Python prammable Prometheus exporter"
 collectors:
+  - example
   - loadavg
   - netdev
-  - my
 credentials:
 collector_opts:
   netdev:

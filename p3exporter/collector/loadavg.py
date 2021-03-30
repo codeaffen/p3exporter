@@ -1,13 +1,14 @@
 import os
 
-from p3exporter.collector import CollectorConfig
+from p3exporter.collector import CollectorBase, CollectorConfig
 from prometheus_client.core import GaugeMetricFamily
 
-class LoadavgCollector(object):
+class LoadavgCollector(CollectorBase):
 
     def __init__(self, config: CollectorConfig):
         """Instanciate a CpuCollector object."""
-        pass
+
+        super(LoadavgCollector, self).__init__(config)
 
     def collect(self):
         """Collect load avg for 1, 5 and 15 minutes interval.

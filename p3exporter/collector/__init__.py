@@ -1,6 +1,7 @@
 """Entry point for collector sub module."""
 import inflection
 import logging
+import re
 
 from importlib import import_module
 from prometheus_client.core import REGISTRY
@@ -28,6 +29,32 @@ class CollectorConfig(object):
                 self.credentials['ssh_key'] is None or (
                     self.credentials['username'] is None or self.credentials['password'] is None)):
             raise Exception('Credential is not fully configured.')
+
+
+class CollectorBase(object):
+    """Base class for all collectors.
+
+    This class will provide methods that do generic work.
+    """
+
+    def __init__(self, config: CollectorConfig):
+        self.collector_name = self.collector_name_from_class
+        self.opts = config.collector_opts.pop(self.collector_name, {})
+
+
+    @property
+    def collector_name_from_class(self):
+        """Convert class name to controller name.
+
+        The class name must follow naming convention:
+            * camemlized string
+            * first part is the collector name
+            * ends with 'Collector'
+
+        This will convert MyCollector class name to my collector name.
+        """
+
+        return re.sub(r'([A-Z][a-z]+)', r'_\g<0>', self.__class__.__name__).lower().strip('_').split('_')[0]
 
 
 class Collector(object):

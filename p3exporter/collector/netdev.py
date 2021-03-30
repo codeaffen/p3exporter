@@ -1,15 +1,16 @@
 import netifaces
 
-from p3exporter.collector import CollectorConfig
+from p3exporter.collector import CollectorBase, CollectorConfig
 from prometheus_client.core import CounterMetricFamily, InfoMetricFamily
 
-class NetdevCollector(object):
 
-    name = "netdev"
+class NetdevCollector(CollectorBase):
 
     def __init__(self, config: CollectorConfig):
         """Instanciate a NetdevCollector object."""
-        self.opts = config.collector_opts.pop(self.name, {})
+
+        super(NetdevCollector, self).__init__(config)
+
         self.whitelist = self.opts.pop("whitelist", [])
         self.blacklist = self.opts.pop("blacklist", [])
         self.ifaces = []
