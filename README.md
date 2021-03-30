@@ -91,9 +91,9 @@ docker run -d --net="host" --pid="host" -v "/:/host:ro,rslave" p3exporter:latest
 
 Name | Description
 ---- | -----------
+example | example collector that actually does nothing but show how long a function has been executed
 loadavg | collects average load in 1, 5 and 15 minutes interval
 netdev | collects netword device information and statistics
-my | example collector that actually does nothing but show how long a function has been executed
 
 ### Activation and Deactivation of collectors
 

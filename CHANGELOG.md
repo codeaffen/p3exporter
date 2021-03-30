@@ -6,11 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ## Unreleased
 
 ### New
+
+* introduce `CollectorBase` class to derive new collectors from
+* introduce  class to derive new collectors from
 * add netdev collector for network information and statistics
 
 ### Changes
-* * reduce docker image size
-* * we switched base image from python:3-slim to alpine
+
+* reduce docker image size
+* we switched base image from python:3-slim to alpine
 
 ### Fixes
 
