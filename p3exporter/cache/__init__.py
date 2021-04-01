@@ -1,6 +1,9 @@
 from functools import lru_cache, wraps
 from datetime import datetime, timedelta
 
+# found on https://bit.ly/39vlEXs
+# thanks https://realpython.com/team/svaldarrama/ for your awsome article about caching in python
+# has been adapted by us to meet our requirements
 def timed_lru_cache(lifetime: int = 3600, maxsize: int = 128):
     """Provide cache with a given lifetime.
 
