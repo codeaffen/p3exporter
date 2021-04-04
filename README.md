@@ -37,8 +37,9 @@ This will install the exporter and all of its dependencies. Now you can start it
 ```text
 $ curl --silent https://raw.githubusercontent.com/codeaffen/p3exporter/develop/p3.yml --output ~/tmp/p3.yml
 $ p3exporter --config ~/tmp/p3.yml
+INFO:root:Collector 'example' was loaded and registred sucessfully
 INFO:root:Collector 'loadavg' was loaded and registred sucessfully
-INFO:root:Collector 'my' was loaded and registred sucessfully
+INFO:root:Collector 'netdev' was loaded and registred sucessfully
 INFO:root:Start exporter, listen on 5876
 ```
 
