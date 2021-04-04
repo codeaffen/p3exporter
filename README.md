@@ -63,8 +63,9 @@ From now you can run it with:
 
 ```text
 $ p3exporter
+INFO:root:Collector 'example' was loaded and registred sucessfully
 INFO:root:Collector 'loadavg' was loaded and registred sucessfully
-INFO:root:Collector 'my' was loaded and registred sucessfully
+INFO:root:Collector 'netdev' was loaded and registred sucessfully
 INFO:root:Start exporter, listen on 5876
 ```
 
