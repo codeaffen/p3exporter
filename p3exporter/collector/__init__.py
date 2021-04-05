@@ -74,7 +74,7 @@ class Collector(object):
                 collector_class = getattr(collector_module, "{0}Collector".format(inflection.camelize(c)))
                 collector = collector_class(config)
                 REGISTRY.register(collector)
-                logging.info("Collector '{0}' was loaded and registred sucessfully".format(c))
+                logging.info("Collector '{0}' was loaded and registred successfully".format(c))
             except ModuleNotFoundError as e:
                 logging.warning("Collector '{0}' not loaded: {1}".format(c, e.msg))
             except AttributeError as e:
