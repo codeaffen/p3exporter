@@ -20,7 +20,7 @@ A clear and concise description of what you expected to happen.
 **Versions:**
 
 - python
-- phpypam
+- output from `pip freeze`
 
 **Additional context**
 Add any other context about the problem here.
