@@ -107,7 +107,6 @@ collectors:
   - example
   - loadavg
   - netdev
-credentials:
 collector_opts:
   netdev:
     whitelist:
