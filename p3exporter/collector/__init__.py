@@ -20,15 +20,6 @@ class CollectorConfig(object):
         self.exporter_name = kwargs.pop('exporter_name', None)
         self.collectors = kwargs.pop('collectors', [])
         self.collector_opts = kwargs.pop('collector_opts', {})
-        self.credentials = kwargs.pop('credentials', None)
-
-        # do some fancy checks on configuration parameters
-        if self.credentials is None:
-            self.credentials = {}
-        elif self.credentials is not None and (
-                self.credentials['ssh_key'] is None or (
-                    self.credentials['username'] is None or self.credentials['password'] is None)):
-            raise Exception('Credential is not fully configured.')
 
 
 class CollectorBase(object):
@@ -38,9 +29,9 @@ class CollectorBase(object):
     """
 
     def __init__(self, config: CollectorConfig):
+        """Instantiates an CollectorBase object"""
         self.collector_name = self.collector_name_from_class
         self.opts = config.collector_opts.pop(self.collector_name, {})
-
 
     @property
     def collector_name_from_class(self):
@@ -53,7 +44,6 @@ class CollectorBase(object):
 
         This will convert MyCollector class name to my collector name.
         """
-
         return re.sub(r'([A-Z][a-z]+)', r'_\g<0>', self.__class__.__name__).lower().strip('_').split('_')[0]
 
 
@@ -68,6 +58,7 @@ class Collector(object):
     """
 
     def __init__(self, config: CollectorConfig):
+        """Instantiates an CollectorBase object"""
         for c in config.collectors:
             try:
                 collector_module = import_module("p3exporter.collector.{}".format(c), package=None)
