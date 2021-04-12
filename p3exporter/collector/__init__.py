@@ -29,7 +29,7 @@ class CollectorBase(object):
     """
 
     def __init__(self, config: CollectorConfig):
-        """Instantiates an CollectorBase object"""
+        """Instantiate a CollectorBase object."""
         self.collector_name = self.collector_name_from_class
         self.opts = config.collector_opts.pop(self.collector_name, {})
 
@@ -58,7 +58,7 @@ class Collector(object):
     """
 
     def __init__(self, config: CollectorConfig):
-        """Instantiates an CollectorBase object"""
+        """Instantiate an CollectorBase object."""
         for c in config.collectors:
             try:
                 collector_module = import_module("p3exporter.collector.{}".format(c), package=None)
