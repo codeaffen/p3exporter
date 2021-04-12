@@ -1,3 +1,4 @@
+"""Module that defines all needed classes and functions for netdev collector."""
 import netifaces
 
 from p3exporter.collector import CollectorBase, CollectorConfig
@@ -5,10 +6,10 @@ from prometheus_client.core import CounterMetricFamily, InfoMetricFamily
 
 
 class NetdevCollector(CollectorBase):
+    """Netdev collector class."""
 
     def __init__(self, config: CollectorConfig):
         """Instanciate a NetdevCollector object."""
-
         super(NetdevCollector, self).__init__(config)
 
         self.whitelist = self.opts.pop("whitelist", [])
@@ -21,7 +22,6 @@ class NetdevCollector(CollectorBase):
 
         Returns several info, couter and gauge metrics for interfaces.
         """
-
         self.ifaces = netifaces.interfaces()
         self.iface_stats = _get_iface_stats()
 
@@ -69,7 +69,6 @@ def _get_iface_stats():
     :return: Returns a dict of dicts. One dict for each interface and one key value pair for each interface statistic in the inner dict.
     :rtype: dict
     """
-
     ifaces = {}
     f = open("/proc/net/dev")
     data = f.read()
@@ -79,26 +78,26 @@ def _get_iface_stats():
         if len(i.strip()) > 0:
             x = i.split()
             k = {
-                x[0][:len( x[0])-1]: {
-                    "tx"        :   {
-                        "bytes"         :   int(x[1]),
-                        "packets"       :   int(x[2]),
-                        "errs"          :   int(x[3]),
-                        "drop"          :   int(x[4]),
-                        "fifo"          :   int(x[5]),
-                        "frame"         :   int(x[6]),
-                        "compressed"    :   int(x[7]),
-                        "multicast"     :   int(x[8])
+                x[0][:len(x[0]) - 1]: {
+                    "tx": {
+                        "bytes": int(x[1]),
+                        "packets": int(x[2]),
+                        "errs": int(x[3]),
+                        "drop": int(x[4]),
+                        "fifo": int(x[5]),
+                        "frame": int(x[6]),
+                        "compressed": int(x[7]),
+                        "multicast": int(x[8])
                     },
-                    "rx"        :   {
-                        "bytes"         :   int(x[9]),
-                        "packets"       :   int(x[10]),
-                        "errs"          :   int(x[11]),
-                        "drop"          :   int(x[12]),
-                        "fifo"          :   int(x[13]),
-                        "frame"         :   int(x[14]),
-                        "compressed"    :   int(x[15]),
-                        "multicast"     :   int(x[16])
+                    "rx": {
+                        "bytes": int(x[9]),
+                        "packets": int(x[10]),
+                        "errs": int(x[11]),
+                        "drop": int(x[12]),
+                        "fifo": int(x[13]),
+                        "frame": int(x[14]),
+                        "compressed": int(x[15]),
+                        "multicast": int(x[16])
                     }
                 }
             }

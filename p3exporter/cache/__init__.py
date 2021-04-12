@@ -1,5 +1,7 @@
+"""Module that defines all needed classes and functions for caching facility."""
 from functools import lru_cache, wraps
 from datetime import datetime, timedelta
+
 
 # found on https://bit.ly/39vlEXs
 # thanks https://realpython.com/team/svaldarrama/ for your awsome article about caching in python

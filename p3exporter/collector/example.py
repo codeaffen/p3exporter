@@ -1,3 +1,4 @@
+"""Module that defines all needed classes and functions for example collector."""
 import random
 import time
 
@@ -30,5 +31,5 @@ class ExampleCollector(CollectorBase):
 @timed_lru_cache(10)
 def _run_process():
     """Sample function to ran a command for metrics."""
-    time.sleep(random.random()) # nosec
+    time.sleep(random.random())  # nosec
     return "sucess"

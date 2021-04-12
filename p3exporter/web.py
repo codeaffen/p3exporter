@@ -20,7 +20,7 @@ def create_app(config: CollectorConfig):
     app = Flask(__name__, instance_relative_config=True)
 
     @app.route("/")
-    def index(): # pylint: disable=W0612
+    def index():  # pylint: disable=W0612
         return render_template("index.html", title=config.exporter_name)
 
     dispatched_app = DispatcherMiddleware(app, {

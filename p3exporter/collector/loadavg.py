@@ -1,13 +1,15 @@
+"""Module that defines all needed classes and functions for loadavg collector."""
 import os
 
 from p3exporter.collector import CollectorBase, CollectorConfig
 from prometheus_client.core import GaugeMetricFamily
 
+
 class LoadavgCollector(CollectorBase):
+    """Load avg collector class."""
 
     def __init__(self, config: CollectorConfig):
         """Instanciate a CpuCollector object."""
-
         super(LoadavgCollector, self).__init__(config)
 
     def collect(self):
