@@ -3,9 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
-
 ## Unreleased
----
 
 ### New
 
@@ -15,6 +13,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Breaks
 
+## 1.1.1 - (2021-04-12)
+
+### Changes
+
+* linting code
+* cleanup code and documentation
+* fix typos
 
 ## 1.1.0 - (2021-03-30)
 
@@ -28,7 +33,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 * reduce docker image size
 * we switched base image from python:3-slim to alpine
-
 
 ## 1.0.0 - (2021-03-22)
 
