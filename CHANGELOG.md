@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
+
 ## Unreleased
+---
 
 ### New
 
@@ -11,9 +13,16 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Fixes
 
+### Breaks
+
+
+## 1.1.2 - (2021-04-15)
+
+
+### Fixes
+
 * #34 - custom collectors with underscore in name are not supported
 
-### Breaks
 
 ## 1.1.1 - (2021-04-12)
 
