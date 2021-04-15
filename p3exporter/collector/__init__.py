@@ -47,6 +47,9 @@ class CollectorBase(object):
             * MyCollector => my
             * FooBarCollector => foo_bar
             * FooBarBazCollector => foo_bar_baz
+
+        :return: collector name in snake case
+        :rtype: string
         """
         class_name = re.sub(r'(?<=[a-z])[A-Z]|[A-Z](?=[^A-Z])', r'_\g<0>', self.__class__.__name__).lower().strip('_')
         class_name_parts = class_name.split('_')[0:-1]
