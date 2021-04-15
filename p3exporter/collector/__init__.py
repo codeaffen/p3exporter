@@ -38,12 +38,14 @@ class CollectorBase(object):
         """Convert class name to controller name.
 
         The class name must follow naming convention:
+
             * camelized string
             * starts with camelized module name
             * ends with 'Collector'
 
         This will convert <Name>Collector class name to <name> collector name.
         Examples for valid names:
+
             * MyCollector => my
             * FooBarCollector => foo_bar
             * FooBarBazCollector => foo_bar_baz
