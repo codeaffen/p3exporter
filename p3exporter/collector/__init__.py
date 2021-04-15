@@ -38,13 +38,20 @@ class CollectorBase(object):
         """Convert class name to controller name.
 
         The class name must follow naming convention:
-            * camemlized string
-            * first part is the collector name
+            * camelized string
+            * starts with camelized module name
             * ends with 'Collector'
 
-        This will convert MyCollector class name to my collector name.
+        This will convert <Name>Collector class name to <name> collector name.
+        Examples for valid names:
+            * MyCollector => my
+            * FooBarCollector => foo_bar
+            * FooBarBazCollector => foo_bar_baz
         """
-        return re.sub(r'([A-Z][a-z]+)', r'_\g<0>', self.__class__.__name__).lower().strip('_').split('_')[0]
+        class_name = re.sub(r'(?<=[a-z])[A-Z]|[A-Z](?=[^A-Z])', r'_\g<0>', self.__class__.__name__).lower().strip('_')
+        class_name_parts = class_name.split('_')[0:-1]
+
+        return '_'.join(class_name_parts)
 
 
 class Collector(object):

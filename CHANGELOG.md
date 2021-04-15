@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Fixes
 
+* #34 - custom collectors with underscore in name are not supported
+
 ### Breaks
 
 ## 1.1.1 - (2021-04-12)
