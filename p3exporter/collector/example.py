@@ -19,17 +19,15 @@ class ExampleCollector(CollectorBase):
 
     def collect(self):
         """Collect the metrics."""
-        self.timer = time.perf_counter()
-        i_labels = {'status': _run_process()}
-        runtime = time.perf_counter() - self.timer
+        runtime, result = _run_process()
         yield GaugeMetricFamily('example_process_runtime', 'Time a process runs in seconds', value=runtime)
-        i = InfoMetricFamily('example_process_status', 'Status of example process', labels=i_labels.keys())
-        i.add_metric(labels=i_labels.keys(), value=i_labels)
-        yield i
+        yield InfoMetricFamily('example_process_status', 'Status of example process', value={'status': result})
 
 
 @timed_lru_cache(10)
 def _run_process():
     """Sample function to ran a command for metrics."""
+    timer = time.perf_counter()
     time.sleep(random.random())  # nosec
-    return "sucess"
+    runtime = time.perf_counter() - timer
+    return runtime, "sucess"
