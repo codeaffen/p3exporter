@@ -1,4 +1,6 @@
 wheel
+asyncio
+async_lru
 bumpversion
 changelog-cli
 coverage

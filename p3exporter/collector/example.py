@@ -1,9 +1,10 @@
 """Module that defines all needed classes and functions for example collector."""
+import asyncio
 import random
 import time
 
 from p3exporter.collector import CollectorBase, CollectorConfig
-from p3exporter.cache import timed_lru_cache
+from p3exporter.cache import timed_lru_cache, timed_async_lru_cache
 from prometheus_client.core import GaugeMetricFamily, InfoMetricFamily
 
 
@@ -22,6 +23,9 @@ class ExampleCollector(CollectorBase):
         runtime, result = _run_process()
         yield GaugeMetricFamily('example_process_runtime', 'Time a process runs in seconds', value=runtime)
         yield InfoMetricFamily('example_process_status', 'Status of example process', value={'status': result})
+        async_runtime, async_result = asyncio.run(_run_async_process())
+        yield GaugeMetricFamily('example_async_process_runtime', 'Time a process runs in seconds', value=async_runtime)
+        yield InfoMetricFamily('example_async_process_status', 'Status of example process', value={'status': async_result})
 
 
 @timed_lru_cache(10)
@@ -30,4 +34,12 @@ def _run_process():
     timer = time.perf_counter()
     time.sleep(random.random())  # nosec
     runtime = time.perf_counter() - timer
-    return runtime, "sucess"
+    return runtime, "success"
+
+@timed_async_lru_cache(10)
+async def _run_async_process():
+    """Sample function to ran a command for metrics."""
+    timer = time.perf_counter()
+    time.sleep(random.random())  # nosec
+    runtime = time.perf_counter() - timer
+    return runtime, "success"

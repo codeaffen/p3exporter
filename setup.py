@@ -31,6 +31,8 @@ setup(
     zip_safe=False,
     package_data={'p3exporter': ['static/*', 'templates/*']},
     install_requires=[
+        'asyncio',
+        'async_lru',
         'flask',
         'inflection',
         'netifaces',
