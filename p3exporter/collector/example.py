@@ -23,12 +23,14 @@ class ExampleCollector(CollectorBase):
         runtime, result = _run_process()
         yield GaugeMetricFamily('example_process_runtime', 'Time a process runs in seconds', value=runtime)
         yield InfoMetricFamily('example_process_status', 'Status of example process', value={'status': result})
-        async_runtime, async_result = asyncio.run(_run_async_process())
-        yield GaugeMetricFamily('example_async_process_runtime', 'Time a process runs in seconds', value=async_runtime)
-        yield InfoMetricFamily('example_async_process_status', 'Status of example process', value={'status': async_result})
+        cached_runtime, cached_result = _run_process_cache_results()
+        yield GaugeMetricFamily('example_cached_process_runtime', 'Time a process runs in seconds', value=cached_runtime)
+        yield InfoMetricFamily('example_cached_process_status', 'Status of example process', value={'status': cached_result})
+        async_runtime, async_result = asyncio.run(_run_async_process_cache_results())
+        yield GaugeMetricFamily('example_cached_async_process_runtime', 'Time a process runs in seconds', value=async_runtime)
+        yield InfoMetricFamily('example_cached_async_process_status', 'Status of example process', value={'status': async_result})
 
 
-@timed_lru_cache(10)
 def _run_process():
     """Sample function to ran a command for metrics."""
     timer = time.perf_counter()
@@ -36,10 +38,18 @@ def _run_process():
     runtime = time.perf_counter() - timer
     return runtime, "success"
 
-@timed_async_lru_cache(10)
-async def _run_async_process():
+@timed_lru_cache(10)
+def _run_process_cache_results():
     """Sample function to ran a command for metrics."""
     timer = time.perf_counter()
     time.sleep(random.random())  # nosec
+    runtime = time.perf_counter() - timer
+    return runtime, "success"
+
+@timed_async_lru_cache(10)
+async def _run_async_process_cache_results():
+    """Sample function to ran a command for metrics."""
+    timer = time.perf_counter()
+    time.sleep(30 + random.random())  # nosec
     runtime = time.perf_counter() - timer
     return runtime, "success"
