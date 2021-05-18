@@ -142,3 +142,6 @@ cython_debug/
 
 # vi/m specific stuff
 *.sw?
+
+# example excludes
+p3.yml
