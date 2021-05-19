@@ -1,5 +1,7 @@
 """Module that defines all needed classes and functions for example collector."""
+import aiohttp
 import asyncio
+from asyncio.tasks import wait
 import random
 import time
 
@@ -49,7 +51,14 @@ def _run_process_cache_results():
 @timed_async_lru_cache(10)
 async def _run_async_process_cache_results():
     """Sample function to ran a command for metrics."""
-    timer = time.perf_counter()
-    time.sleep(30 + random.random())  # nosec
-    runtime = time.perf_counter() - timer
-    return runtime, "success"
+    resource = "https://git.kernel.org/torvalds/t/linux-5.13-rc2.tar.gz"
+    async with aiohttp.ClientSession() as session:
+        timer = time.perf_counter()
+        try:
+            await session.get(resource)
+            status = "success"
+        except aiohttp.ClientError:
+            status = "failed"
+        runtime = time.perf_counter() - timer
+
+    return runtime, status
