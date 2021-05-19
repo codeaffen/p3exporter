@@ -1,7 +1,6 @@
 """Module that defines all needed classes and functions for example collector."""
 import aiohttp
 import asyncio
-from asyncio.tasks import wait
 import random
 import time
 
@@ -22,13 +21,15 @@ class ExampleCollector(CollectorBase):
 
     def collect(self):
         """Collect the metrics."""
+        loop = asyncio.get_event_loop()
+
         runtime, result = _run_process()
         yield GaugeMetricFamily('example_process_runtime', 'Time a process runs in seconds', value=runtime)
         yield InfoMetricFamily('example_process_status', 'Status of example process', value={'status': result})
         cached_runtime, cached_result = _run_process_cache_results()
         yield GaugeMetricFamily('example_cached_process_runtime', 'Time a process runs in seconds', value=cached_runtime)
         yield InfoMetricFamily('example_cached_process_status', 'Status of example process', value={'status': cached_result})
-        async_runtime, async_result = asyncio.run(_run_async_process_cache_results())
+        async_runtime, async_result = loop.run_until_complete(_run_async_process_cache_results())
         yield GaugeMetricFamily('example_cached_async_process_runtime', 'Time a process runs in seconds', value=async_runtime)
         yield InfoMetricFamily('example_cached_async_process_status', 'Status of example process', value={'status': async_result})
 
@@ -55,9 +56,11 @@ async def _run_async_process_cache_results():
     async with aiohttp.ClientSession() as session:
         timer = time.perf_counter()
         try:
-            await session.get(resource)
-            status = "success"
-        except aiohttp.ClientError:
+            async with session.get(resource) as response:
+                assert response.status == 200
+                await response.read()
+                status = "success"
+        except (aiohttp.ClientError, AssertionError):
             status = "failed"
         runtime = time.perf_counter() - timer
 
