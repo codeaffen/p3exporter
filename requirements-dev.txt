@@ -16,5 +16,3 @@ pytest-replay
 pytest-vcr
 pytest-xdist
 PyYAML
-snooty-lextudio==1.9.0.dev0
-pip==20.1.1
