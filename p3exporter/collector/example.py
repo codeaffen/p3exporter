@@ -49,7 +49,7 @@ def _run_process_cache_results():
     runtime = time.perf_counter() - timer
     return runtime, "success"
 
-@timed_async_lru_cache(10)
+@timed_async_lru_cache(120)
 async def _run_async_process_cache_results():
     """Sample function to ran a command for metrics."""
     resource = "https://git.kernel.org/torvalds/t/linux-5.13-rc2.tar.gz"
