@@ -5,3 +5,14 @@ p3exporter.cache package
    :members:
    :undoc-members:
    :show-inheritance:
+
+Submodules
+----------
+
+p3exporter.cache.async module
+-----------------------------
+
+.. automodule:: p3exporter.cache.async
+   :members:
+   :undoc-members:
+   :show-inheritance:

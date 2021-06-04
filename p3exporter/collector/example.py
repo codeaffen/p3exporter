@@ -4,6 +4,8 @@ import asyncio
 import random
 import time
 
+from aiocache import cached
+from aiocache.serializers import PickleSerializer
 from p3exporter.collector import CollectorBase, CollectorConfig
 from p3exporter.cache import timed_lru_cache, timed_async_lru_cache
 from prometheus_client.core import GaugeMetricFamily, InfoMetricFamily
