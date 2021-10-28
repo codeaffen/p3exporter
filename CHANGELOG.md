@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Fixes
 
 ### Breaks
+* We remove support for python prior than 3.7
 
 ## 1.1.2 - (2021-04-15)
 
