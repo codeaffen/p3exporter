@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
+* Switch sphinx from recommonmark to myst_parser
 
 ### Fixes
 
