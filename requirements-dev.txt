@@ -5,7 +5,7 @@ coverage
 flake8
 flake8-colors
 flake8-docstrings
-flask
+flask # pyup: ignore
 inflection
 netifaces
 setuptools
