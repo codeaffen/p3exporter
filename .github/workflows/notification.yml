@@ -16,7 +16,6 @@ jobs:
           message: |
             ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}
             ${{ join(github.event.commits.*.message) }}
-          notice: true
       - name: irc pull request
         uses: rectalogic/notify-irc@v1
         if: github.event_name == 'pull_request'
@@ -27,7 +26,6 @@ jobs:
           sasl_password: ${{ secrets.LIBERA_CHATBOT_PASSWORD }}
           message: |
             ${{ github.actor }} opened PR ${{ github.event.pull_request.html_url }}
-          notice: true
       - name: irc tag created
         uses: rectalogic/notify-irc@v1
         if: github.event_name == 'create' && github.event.ref_type == 'tag'
@@ -38,4 +36,3 @@ jobs:
           sasl_password: ${{ secrets.LIBERA_CHATBOT_PASSWORD }}
           message: |
             ${{ github.actor }} tagged ${{ github.repository }} ${{ github.event.ref }}
-          notice: true
