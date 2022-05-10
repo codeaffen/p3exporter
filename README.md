@@ -17,7 +17,7 @@ There are different ways to run the exporter on your system. Our exporter listen
 ### Running exporter as docker container
 
 The simplest way will is to start it as docker container.
-The container image is hosted on [dockerhub](https://hub.docker.com/r/codeaffen/p3exporter) and the latest tag represent the `develop` branch of the github repository.
+The container image is hosted on [quay.io](https://quay.io/repository/codeaffen/p3exporter) and [dockerhub](https://hub.docker.com/r/codeaffen/p3exporter) and the `latest` tag represent the `develop` branch of the github repository.
 If you want to use a given version you can us the verson string (e.g. `v1.0.0`) as tag instead.
 
 ```text
@@ -73,7 +73,7 @@ INFO:root:Start exporter, listen on 5876
 ## Building your own container image
 
 To build your own container image you can use the dockerfile which is delivered in our github repository.
-This file is also used to create our images on dockerhub.
+This file is also used to create our images on quay.io or dockerhub.
 
 ```text
 $ docker build -t p3exporter .
