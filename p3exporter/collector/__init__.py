@@ -62,7 +62,10 @@ class CollectorBase(object):
 class Collector(object):
     """Base class to load collectors.
 
-    All collectors have to be placed inside the directory `collector`. You have to follow the naming convention:
+    Collectors needs to be placed either in the directory `collector` within this module (local) or in a separate module.
+    Collectors in separate modules needs to be addressed in dotted notation.
+
+    Collectors have to follow the following naming convention:
 
     1. Place the collector code in a <name>.py file (e.g. `my.py`)
     2. Within the file <name>.py` a class <Name>Collector (e.g. `MyController`) needs to be defined.
@@ -71,10 +74,11 @@ class Collector(object):
 
     def __init__(self, config: CollectorConfig):
         """Instantiate an CollectorBase object."""
-        for c in config.collectors:
+        _collectors = [c if "." in c else "p3exporter.collector.{}".format(c) for c in config.collectors]
+        for c in _collectors:
             try:
-                collector_module = import_module("p3exporter.collector.{}".format(c), package=None)
-                collector_class = getattr(collector_module, "{0}Collector".format(inflection.camelize(c)))
+                collector_module = import_module(c, package=None)
+                collector_class = getattr(collector_module, "{0}Collector".format(inflection.camelize(c.split('.')[-1])))
                 collector = collector_class(config)
                 REGISTRY.register(collector)
                 logging.info("Collector '{0}' was loaded and registred successfully".format(c))
