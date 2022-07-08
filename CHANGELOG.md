@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ## Unreleased
 
 ### New
+* Allow to load external collectors with fully qualified dotted notation
 
 ### Changes
 * Switch sphinx from recommonmark to myst_parser
