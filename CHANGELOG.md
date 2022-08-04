@@ -3,7 +3,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
+
 ## Unreleased
+---
+
+### New
+
+### Changes
+
+### Fixes
+
+### Breaks
+
+
+## 1.2.0 - (2022-08-04)
 
 ### New
 * Allow to load external collectors with fully qualified dotted notation
@@ -11,7 +24,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 * Switch sphinx from recommonmark to myst_parser
 
-### Fixes
 
 ### Breaks
 * We remove support for python prior than 3.7
