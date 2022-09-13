@@ -4,6 +4,7 @@ from wsgiref.simple_server import make_server
 
 import yaml
 import logging
+import os
 import signal
 import sys
 import time
@@ -31,9 +32,9 @@ def main():
     logging.getLogger().setLevel(logging.INFO)
 
     parser = argparse.ArgumentParser(description="Python programmable Prometheus exporter.")
-    parser.add_argument('-c', '--config', default='p3.yml',
+    parser.add_argument('-c', '--config', default=os.getenv('P3E_CONFIG', 'p3.yml'),
                         help='path to configuration file.')
-    parser.add_argument('-p', '--port', default=5876,
+    parser.add_argument('-p', '--port', default=os.getenv('P3E_PORT', 5876),
                         help='exporter exposed port')
     args = parser.parse_args()
 
