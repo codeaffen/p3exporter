@@ -33,7 +33,7 @@ We also release all versions on [pypi](https://pypi.org/project/p3exporter/) so 
 pip install p3exporter
 ```
 
-This will install the exporter and all of its dependencies. Now you can start it as every other program. You need to add `--config` or `-c` option with path to your `p3.yml` file.
+This will install the exporter and all of its dependencies. Now you can start it as every other program. You need to provide a valid configuration file either by adding `--config` or `-c` option with path to your `p3.yml` file or by defining an environment variable `P3E_CONFIG` which points to your configuration.
 
 ```text
 $ curl --silent https://raw.githubusercontent.com/codeaffen/p3exporter/develop/p3.yml --output ~/tmp/p3.yml
@@ -92,11 +92,11 @@ docker run -d --net="host" --pid="host" -v "/:/host:ro,rslave" p3exporter:latest
 
 ## Collectors
 
-Name | Description
----- | -----------
-example | example collector that actually does nothing but show how long a function has been executed
-loadavg | collects average load in 1, 5 and 15 minutes interval
-netdev | collects netword device information and statistics
+| Name | Description |
+| ---- | ----------- |
+| example | example collector that actually does nothing but show how long a function has been executed |
+| loadavg | collects average load in 1, 5 and 15 minutes interval |
+| netdev | collects netword device information and statistics |
 
 ### Activation and Deactivation of collectors
 
@@ -115,3 +115,12 @@ collector_opts:
       - docker0
       - lo
 ```
+
+### Start-up Configuration
+
+You can define two fundamental Parameters on program start-up. The following table summarized you options:
+
+| Parameter | Environment variable | Default | Description |
+| --------- | -------------------- | ------- | ----------- |
+| --config  | P3E_CONFIG | p3.yml | Path to the used configuration file |
+| --port | P3E_PORT | 5876 | TCP port on which the p3exporter listen for connections |
