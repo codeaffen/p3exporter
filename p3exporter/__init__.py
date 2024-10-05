@@ -29,6 +29,7 @@ def main():
     signal.signal(signal.SIGTERM, signal_handler)
     signal.signal(signal.SIGINT, signal_handler)
 
+    logging.basicConfig()
     logging.getLogger().setLevel(logging.INFO)
 
     parser = argparse.ArgumentParser(description="Python programmable Prometheus exporter.")
