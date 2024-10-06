@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### New
 * Fix \#47 - add environment variables for fundamental parameters
+* configuration: add logging section
 
 ### Changes
 

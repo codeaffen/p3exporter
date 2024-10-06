@@ -9,3 +9,6 @@ collector_opts:
     blacklist:
       - docker0
       - lo
+logging:
+  - name: root
+    level: INFO

@@ -13,6 +13,35 @@ from p3exporter.collector import Collector, CollectorConfig
 from p3exporter.web import create_app
 
 
+def setup_logging(cfg: dict):
+    """Set up logging as configured.
+
+    The configuration may optionally contain an entry `logging`,
+    if it does not or if that entry is not an array then does nothing.
+    Each array element must be a dict that contains at least a key
+    `name` that refers to the logger to configure. It may also contain
+    the optional keys `level` and `target` that configure the
+    logging-level and a file-target, respectively if present.
+
+    :param cfg: Configuration as read from config-file.
+    :type cfg: dict
+    """
+    if not isinstance(cfg.get('logging'), list):
+        return
+    for c in cfg['logging']:
+        if not isinstance(c, dict):
+            return
+        if not isinstance(c.get('name'), str):
+            return
+        logger = logging.getLogger(c["name"])
+        level = c.get('level')
+        if level is not None:
+            logger.setLevel(level)
+        target = c.get('target')
+        if target is not None:
+            logger.addHandler(logging.FileHandler(target))
+
+
 def shutdown():
     """Shutdown the app in a clean way."""
     logging.info('Shutting down, see you next time!')
@@ -41,6 +70,7 @@ def main():
     with open(args.config, 'r') as config_file:
         cfg = yaml.load(config_file, Loader=yaml.SafeLoader)
     collector_config = CollectorConfig(**cfg)
+    setup_logging(cfg)
 
     Collector(collector_config)
 
