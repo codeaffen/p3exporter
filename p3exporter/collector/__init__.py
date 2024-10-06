@@ -58,6 +58,25 @@ class CollectorBase(object):
 
         return '_'.join(class_name_parts)
 
+    def setLoggers(self, logger_names: list | str):
+        """Configure the provided logger(s) according to the CollectorConfig.
+
+        It is recommended to call this method from the constructor of any
+        deriving class. Either bump the required p3exporter version or check
+        dynamically if the method is supported.
+
+        :param logger_names: Name or names of loggers to configure.
+        :type logger_names: list or str
+        """
+        if not isinstance(logger_names, list):
+            logger_names = [logger_names]
+        if "log_level" not in self.opts:
+            return
+        level = self.opts["log_level"]
+        for name in logger_names:
+            logger = logging.getLogger(name)
+            logger.setLevel(level)
+
 
 class Collector(object):
     """Base class to load collectors.

@@ -1,4 +1,5 @@
 from p3exporter import setup_logging
+from p3exporter.collector import CollectorBase, CollectorConfig
 import logging
 import os.path
 import pytest
@@ -104,3 +105,53 @@ def test_logging_levels(cfg_logging, levels, targets):
             handler = added_handlers[0]
             assert isinstance(handler, logging.FileHandler)
             assert handler.baseFilename == os.path.abspath(targets[i])
+
+
+class FooCollector(CollectorBase):
+    pass
+
+
+data_collectorbase_setloggers = [
+    pytest.param(None,
+                 ["foo", "bar"],
+                 [logging.WARNING, logging.NOTSET, logging.NOTSET],
+                 id="no log_level setting"),
+    pytest.param("CRITICAL",
+                 "foo",
+                 [logging.WARNING, logging.CRITICAL, logging.NOTSET],
+                 id="single logger-name"),
+    pytest.param("ERROR",
+                 ["foo", "bar"],
+                 [logging.WARNING, logging.ERROR, logging.ERROR],
+                 id="list of loggers"),
+    pytest.param(20,
+                 ["", "foo"],
+                 [logging.INFO, logging.INFO, logging.NOTSET],
+                 id="numeric log_level"),
+    ]
+
+
+@pytest.mark.parametrize("cfg_log_level,logger_names,expected",
+                         data_collectorbase_setloggers)
+def test_collectorbase_setloggers(cfg_log_level, logger_names, expected):
+    # GIVEN an input config-dictionary
+    cfg = {
+        "exporter_name": "Test only",
+        "collectors": ["foo"],
+        "collector_opts": {
+            "foo": {}
+        },
+    }
+    if cfg_log_level is not None:
+        cfg["collector_opts"]["foo"]["log_level"] = cfg_log_level
+
+    # AND a collector-base using this config
+    collector = FooCollector(CollectorConfig(**cfg))
+
+    # WHEN the setLoggers() method is called
+    collector.setLoggers(logger_names)
+
+    # THEN the logging-levels should get changed to the expected
+    for i, name in enumerate(loggers):
+        logger = logging.getLogger(name)
+        assert logger.level == expected[i]
